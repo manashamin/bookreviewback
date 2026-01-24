@@ -1,36 +1,26 @@
-package com.booknest.bookreview.model;
+package com.booknest.bookreview.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "reviews")
-public class BookReview {
+public class ReviewRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String author;
+
+    @NotBlank
     private String genre;
+
+    @Min(1)
+    @Max(5)
     private int rating;
 
-    @Column(length = 1000)
+    @NotBlank
     private String reviewText;
-
-    public Review() {}
-
-    public Review(String title, String author, String genre, int rating, String reviewText) {
-        this.title = title;
-        this.author = author;
-        this.genre = genre;
-        this.rating = rating;
-        this.reviewText = reviewText;
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;
@@ -50,10 +40,6 @@ public class BookReview {
 
     public String getReviewText() {
         return reviewText;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setTitle(String title) {
