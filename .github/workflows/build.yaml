@@ -1,36 +1,38 @@
-name: SonarCloud Backend Scan
+name: SonarCloud
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches:
+      - main
 
 jobs:
-  sonar:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Maven
-        run: mvn clean verify
-        working-directory: bookreview   //change your directory
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+      - name: Cache Maven packages
+        uses: actions/cache@v4
         with:
-          args: >
-            -Dsonar.organization=manashamin  //give your git name
-            -Dsonar.projectKey=manashamin_bookreviewback //give ur repo
-            -Dsonar.java.binaries=bookreviewback/target/classes
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build and analyze
         env:
-          SONAR_TOKEN: ${{ secrets.TOKEN_TOKEN }} // give ur token
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn clean verify sonar:sonar \
+          -Dsonar.projectKey=manashamin_bookreviewback \
+          -Dsonar.organization=manashamin \
+          -Dsonar.host.url=https://sonarcloud.io
