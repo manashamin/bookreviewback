@@ -11,11 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reviews")
 @CrossOrigin(origins = "*")
-public class ReviewController {
+public class BookReviewController {
 
     private final BookReviewService service;
 
-    public ReviewController(BookReviewService service) {
+    public BookReviewController(BookReviewService service) {
         this.service = service;
     }
 

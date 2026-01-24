@@ -18,9 +18,9 @@ public class BookReview {
     @Column(length = 1000)
     private String reviewText;
 
-    public Review() {}
+    public BookReview() {}
 
-    public Review(String title, String author, String genre, int rating, String reviewText) {
+    public BookReview(String title, String author, String genre, int rating, String reviewText) {
         this.title = title;
         this.author = author;
         this.genre = genre;
