@@ -1,39 +1,28 @@
-package com.booknest.bookreview.model;
+package com.booknest.bookreview.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-public class BookReview {
+public class ReviewRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank
     private String bookTitle;
+
+    @NotBlank
     private String author;
+
+    @NotBlank
     private String genre;
+
+    @Min(1)
+    @Max(5)
     private int rating;
 
-    @Column(length = 1000)
+    @NotBlank
     private String reviewText;
 
-    // ✅ Required by JPA
-    public BookReview() {}
-
-    // ✅ Constructor used in service
-    public BookReview(String bookTitle, String author, String genre, int rating, String reviewText) {
-        this.bookTitle = bookTitle;
-        this.author = author;
-        this.genre = genre;
-        this.rating = rating;
-        this.reviewText = reviewText;
-    }
-
     // ✅ Getters
-    public Long getId() {
-        return id;
-    }
-
     public String getBookTitle() {
         return bookTitle;
     }
@@ -55,10 +44,6 @@ public class BookReview {
     }
 
     // ✅ Setters
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
     }

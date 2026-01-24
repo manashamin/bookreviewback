@@ -1,14 +1,16 @@
 package com.booknest.bookreview.controller;
 
+import com.booknest.bookreview.dto.ReviewRequest;
 import com.booknest.bookreview.model.BookReview;
 import com.booknest.bookreview.service.BookReviewService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class BookReviewController {
 
     private final BookReviewService service;
@@ -17,28 +19,23 @@ public class BookReviewController {
         this.service = service;
     }
 
-    // CREATE
     @PostMapping
-    public BookReview createReview(@RequestBody BookReview review) {
-        return service.addReview(review);
+    public BookReview create(@Valid @RequestBody ReviewRequest request) {
+        return service.createReview(request);
     }
 
-    // READ
     @GetMapping
-    public List<BookReview> getAllReviews() {
+    public List<BookReview> getAll() {
         return service.getAllReviews();
     }
 
-    // UPDATE
     @PutMapping("/{id}")
-    public BookReview updateReview(@PathVariable Long id,
-                                   @RequestBody BookReview review) {
-        return service.updateReview(id, review);
+    public BookReview update(@PathVariable Long id, @Valid @RequestBody ReviewRequest request) {
+        return service.updateReview(id, request);
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
-    public void deleteReview(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         service.deleteReview(id);
     }
 }
