@@ -20,7 +20,7 @@ public class ReviewServiceImpl implements BookReviewService {
     @Override
     public BookReview createReview(ReviewRequest request) {
         BookReview review = new BookReview(
-                request.getTitle(),
+                request.getBookTitle(),
                 request.getAuthor(),
                 request.getGenre(),
                 request.getRating(),
@@ -39,7 +39,7 @@ public class ReviewServiceImpl implements BookReviewService {
         BookReview review = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
 
-        review.setTitle(request.getTitle());
+        review.setBookTitle(request.getBookTitle());
         review.setAuthor(request.getAuthor());
         review.setGenre(request.getGenre());
         review.setRating(request.getRating());

@@ -3,14 +3,13 @@ package com.booknest.bookreview.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "reviews")
 public class BookReview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String bookTitle;
     private String author;
     private String genre;
     private int rating;
@@ -18,22 +17,25 @@ public class BookReview {
     @Column(length = 1000)
     private String reviewText;
 
+    // ✅ Required by JPA
     public BookReview() {}
 
-    public BookReview(String title, String author, String genre, int rating, String reviewText) {
-        this.title = title;
+    // ✅ Constructor used in service
+    public BookReview(String bookTitle, String author, String genre, int rating, String reviewText) {
+        this.bookTitle = bookTitle;
         this.author = author;
         this.genre = genre;
         this.rating = rating;
         this.reviewText = reviewText;
     }
 
+    // ✅ Getters
     public Long getId() {
         return id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBookTitle() {
+        return bookTitle;
     }
 
     public String getAuthor() {
@@ -52,12 +54,13 @@ public class BookReview {
         return reviewText;
     }
 
+    // ✅ Setters
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
     }
 
     public void setAuthor(String author) {

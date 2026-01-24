@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 public class ReviewRequest {
 
     @NotBlank
-    private String title;
+    private String bookTitle;
 
     @NotBlank
     private String author;
@@ -22,8 +22,9 @@ public class ReviewRequest {
     @NotBlank
     private String reviewText;
 
-    public String getTitle() {
-        return title;
+    // ✅ Getters
+    public String getBookTitle() {
+        return bookTitle;
     }
 
     public String getAuthor() {
@@ -42,8 +43,9 @@ public class ReviewRequest {
         return reviewText;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    // ✅ Setters
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
     }
 
     public void setAuthor(String author) {
