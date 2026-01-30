@@ -12,12 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@CrossOrigin(
-        origins = "http://localhost:3002",
-        allowedHeaders = "*",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
-)
-
 public class BookReviewController {
 
     private final BookReviewService service;
@@ -27,23 +21,24 @@ public class BookReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<BookReview> createReview(@Valid @RequestBody ReviewRequest request) {
-        BookReview createdReview = service.createReview(request);
-        return new ResponseEntity<>(createdReview, HttpStatus.CREATED);
+    public ResponseEntity<BookReview> createReview(
+            @Valid @RequestBody ReviewRequest request) {
+        return new ResponseEntity<>(
+                service.createReview(request),
+                HttpStatus.CREATED
+        );
     }
 
     @GetMapping
     public ResponseEntity<List<BookReview>> getAllReviews() {
-        List<BookReview> reviews = service.getAllReviews();
-        return ResponseEntity.ok(reviews);
+        return ResponseEntity.ok(service.getAllReviews());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<BookReview> updateReview(
             @PathVariable Long id,
             @Valid @RequestBody ReviewRequest request) {
-        BookReview updatedReview = service.updateReview(id, request);
-        return ResponseEntity.ok(updatedReview);
+        return ResponseEntity.ok(service.updateReview(id, request));
     }
 
     @DeleteMapping("/{id}")
