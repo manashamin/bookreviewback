@@ -8,6 +8,7 @@ class BookreviewApplicationTests {
 
     @Test
     void contextLoads() {
+        //This tests ensures that the spring application context loads successfully
     }
 
 }
