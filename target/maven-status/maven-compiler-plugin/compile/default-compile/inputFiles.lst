@@ -1,0 +1,9 @@
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\exception\ResourceNotFoundException.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\BookReviewApplication.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\service\BookReviewService.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\model\BookReview.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\controller\BookReviewController.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\repository\BookReviewRepository.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\dto\ReviewRequest.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\service\ReviewServiceImpl.java
+C:\Users\manas\IdeaProjects\bookreview\src\main\java\com\booknest\bookreview\config\CorsConfig.java
